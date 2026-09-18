@@ -1,0 +1,5 @@
+export type Permission='customers.view'|'customers.create'|'customers.edit'|'customers.delete'|'billing.view'|'billing.generate'|'billing.edit'|'payments.view'|'payments.create'|'employees.view'|'employees.manage'|'audit.view';
+export type Profile={id:string;full_name:string;phone:string|null;role:'admin'|'employee'|'customer';is_active:boolean;avatar_url:string|null;created_at:string;updated_at:string};
+export type Settings={id:number;company_name:string;tagline:string;monthly_bill:number;currency:string;phone:string|null;address:string|null;logo_url:string|null;updated_at:string};
+export type Customer={id:string;user_id:string|null;customer_code:string;name:string;phone:string;address:string|null;connection_no:string|null;monthly_amount:number;status:'active'|'inactive';joined_at:string;photo_url:string|null;notes:string|null;created_at:string;updated_at:string};
+export type Bill={id:string;customer_id:string;billing_month:string;amount_due:number;amount_paid:number;due_amount:number;status:'unpaid'|'partial'|'paid';last_paid_at:string|null;created_at:string;updated_at:string;customer?:{name:string;customer_code:string;phone?:string}};
