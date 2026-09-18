@@ -1,3 +1,5 @@
+import {supabase} from './supabase';
+
 export async function uploadImage(file:File,folder='arki-network'){
  const {data,error}=await supabase.functions.invoke('cloudinary-signature',{body:{folder}});
  if(error||data?.error)throw new Error(error?.message||data?.error||'Cloudinary signature failed');
