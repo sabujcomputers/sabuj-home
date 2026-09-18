@@ -11,8 +11,9 @@ Deno.serve(async(req)=>{
   const anon=Deno.env.get('SUPABASE_ANON_KEY')||Deno.env.get('SUPABASE_PUBLISHABLE_KEY')!;
   const client=createClient(url,anon,{global:{headers:{Authorization:auth}}});
   const {data:{user}}=await client.auth.getUser();if(!user)return Response.json({error:'Unauthorized'},{status:401,headers:cors});
-  const {data:allowed}=await client.rpc('has_permission',{p_permission:'customers.edit'});
-  if(!allowed)return Response.json({error:'Upload permission required'},{status:403,headers:cors});
+  const {data:canEdit}=await client.rpc('has_permission',{p_permission:'customers.edit'});
+  const {data:canCreate}=await client.rpc('has_permission',{p_permission:'customers.create'});
+  if(!canEdit&&!canCreate)return Response.json({error:'Upload permission required'},{status:403,headers:cors});
   const cloud= Deno.env.get('CLOUDINARY_CLOUD_NAME')!;
   const key= Deno.env.get('CLOUDINARY_API_KEY')!;
   const secret= Deno.env.get('CLOUDINARY_API_SECRET')!;
