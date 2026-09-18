@@ -1,5 +1,8 @@
 import {useEffect,useState} from 'react';
-import type {FormEvent} from 'react';
+import type {FormEvent,ReactNode} from 'react';
+
+const monthStart=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),1).toISOString().slice(0,10)};
+const money=(n:number)=>new Intl.NumberFormat('bn-BD',{style:'currency',currency:'BDT',maximumFractionDigits:0}).format(Number(n||0));
 import {supabase} from './lib/supabase';
 
 export default function App(){
