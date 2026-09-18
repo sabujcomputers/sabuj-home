@@ -3,3 +3,5 @@ export type Profile={id:string;full_name:string;phone:string|null;role:'admin'|'
 export type Settings={id:number;company_name:string;tagline:string;monthly_bill:number;currency:string;phone:string|null;address:string|null;logo_url:string|null;updated_at:string};
 export type Customer={id:string;user_id:string|null;customer_code:string;name:string;phone:string;address:string|null;connection_no:string|null;monthly_amount:number;status:'active'|'inactive';joined_at:string;photo_url:string|null;notes:string|null;created_at:string;updated_at:string};
 export type Bill={id:string;customer_id:string;billing_month:string;amount_due:number;amount_paid:number;due_amount:number;status:'unpaid'|'partial'|'paid';last_paid_at:string|null;created_at:string;updated_at:string;customer?:{name:string;customer_code:string;phone?:string}};
+
+export type Payment={id:string;bill_id:string;customer_id:string;amount:number;payment_date:string;method:'cash'|'mobile_banking'|'bank'|'other';collected_by:string|null;receipt_no:string;notes:string|null;created_at:string};
